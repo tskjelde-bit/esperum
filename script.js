@@ -68,4 +68,47 @@ document.addEventListener('DOMContentLoaded', function () {
             menuToggle.classList.toggle('active');
         });
     }
+
+    // Spawn Icon Swarm
+    function spawnSwarm() {
+        // Only run on landing page (check for hero section)
+        if (!document.querySelector('.hero')) return;
+
+        const count = 15;
+        const body = document.body;
+
+        for (let i = 0; i < count; i++) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'swarm-unit-wrapper';
+
+            const inner = document.createElement('div');
+            inner.className = 'swarm-unit-inner';
+
+            const img = document.createElement('img');
+            img.src = 'clean.svg';
+            img.className = 'swarm-icon';
+            img.alt = '';
+
+            // Randomize Speeds (Base ~6-8s for double speed, X and Y independent)
+            const durationX = 5 + Math.random() * 5; // 5s to 10s
+            const durationY = 6 + Math.random() * 6; // 6s to 12s
+            const delay = Math.random() * 5; // Start scattering over 5s
+
+            // Randomize Y start slightly
+            const startY = Math.random() * 80; // 0-80vh start
+
+            wrapper.style.animationDuration = `${durationX}s`;
+            wrapper.style.animationDelay = `${delay}s`;
+
+            inner.style.animationDuration = `${durationY}s`;
+            inner.style.animationDelay = `${delay}s`; /* Sync start time */
+            inner.style.top = `${startY}vh`;
+
+            inner.appendChild(img);
+            wrapper.appendChild(inner);
+            body.appendChild(wrapper);
+        }
+    }
+
+    spawnSwarm();
 });
