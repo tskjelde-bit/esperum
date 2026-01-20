@@ -1127,40 +1127,43 @@ ul {
 }
 
 /* =========================================
-   Floating Icon Animation (Chaotic Movement)
+   Swarm Animation (Chaotic Movement)
    ========================================= */
-.floating-icon-x {
+.swarm-unit-wrapper {
     position: fixed;
-    top: 0;
-    left: 0;
     z-index: 50;
-    /* Above background, below header/modals */
     pointer-events: none;
-    /* Let clicks pass through */
-    animation: moveX 13s ease-in-out infinite alternate;
+    top: 0;
+    left: -150px;
+    /* Start off-screen left */
+    /* Animation X gets assigned inline for randomness in JS, but define a fallback here */
+    animation: moveX 8s linear infinite;
 }
 
-.floating-icon-y {
-    animation: moveY 17s ease-in-out infinite alternate;
+.swarm-unit-inner {
+    /* Animation Y gets assigned inline */
+    animation: moveY 10s ease-in-out infinite alternate;
 }
 
-.spinning-icon {
-    animation: spin 4s linear infinite;
-    width: 100px;
-    /* Adjust size as needed */
-    opacity: 0.8;
+.swarm-icon {
+    width: 60px;
+    /* Slightly smaller for swarm */
+    opacity: 0.6;
+    animation: spin 2s linear infinite;
+    /* Fast spin */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
 @keyframes moveX {
     0% {
-        transform: translateX(0vw);
+        transform: translateX(-10vw);
     }
 
     100% {
-        transform: translateX(calc(100vw - 100px));
+        transform: translateX(110vw);
     }
 
-    /* Subtract width to stay on screen */
+    /* Fly completely across */
 }
 
 @keyframes moveY {
@@ -1169,10 +1172,8 @@ ul {
     }
 
     100% {
-        transform: translateY(calc(100vh - 100px));
+        transform: translateY(90vh);
     }
-
-    /* Subtract height to stay on screen */
 }
 
 @keyframes spin {
