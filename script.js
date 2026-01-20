@@ -77,6 +77,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const count = 15;
         const body = document.body;
 
+        const colors = ['#ffffff', '#000000', '#dc2626'];
+
         for (let i = 0; i < count; i++) {
             const wrapper = document.createElement('div');
             wrapper.className = 'swarm-unit-wrapper';
@@ -84,27 +86,34 @@ document.addEventListener('DOMContentLoaded', function () {
             const inner = document.createElement('div');
             inner.className = 'swarm-unit-inner';
 
-            const img = document.createElement('img');
-            img.src = 'clean.svg';
-            img.className = 'swarm-icon';
-            img.alt = '';
+            // Randomize Properties
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const size = 30 + Math.random() * 70; // 30px to 100px range
 
-            // Randomize Speeds (Base ~6-8s for double speed, X and Y independent)
-            const durationX = 5 + Math.random() * 5; // 5s to 10s
-            const durationY = 6 + Math.random() * 6; // 6s to 12s
-            const delay = Math.random() * 5; // Start scattering over 5s
+            // Inline SVG with dynamic color and size
+            const iconHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-3.54 10.6 14.14 14.14" fill="none" 
+                     class="swarm-icon" 
+                     style="width: ${size}px; height: ${size}px;">
+                    <path d="M20,6h-5v8h-5 M11,5v5h8v5" transform="rotate(45)" stroke="${color}" stroke-width="2"/>
+                </svg>
+            `;
 
-            // Randomize Y start slightly
-            const startY = Math.random() * 80; // 0-80vh start
+            inner.innerHTML = iconHTML;
+
+            // Randomize Speeds
+            const durationX = 4 + Math.random() * 6; // 4s to 10s
+            const durationY = 5 + Math.random() * 7; // 5s to 12s
+            const delay = Math.random() * 5;
+            const startY = Math.random() * 90;
 
             wrapper.style.animationDuration = `${durationX}s`;
             wrapper.style.animationDelay = `${delay}s`;
 
             inner.style.animationDuration = `${durationY}s`;
-            inner.style.animationDelay = `${delay}s`; /* Sync start time */
+            inner.style.animationDelay = `${delay}s`;
             inner.style.top = `${startY}vh`;
 
-            inner.appendChild(img);
             wrapper.appendChild(inner);
             body.appendChild(wrapper);
         }

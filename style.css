@@ -1146,8 +1146,7 @@ ul {
 }
 
 .swarm-icon {
-    width: 60px;
-    /* Slightly smaller for swarm */
+    /* Width assigned inline via JS */
     opacity: 0.6;
     animation: spin 2s linear infinite;
     /* Fast spin */
