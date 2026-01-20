@@ -1125,3 +1125,62 @@ ul {
         font-size: 3rem;
     }
 }
+
+/* =========================================
+   Floating Icon Animation (Chaotic Movement)
+   ========================================= */
+.floating-icon-x {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    /* Above background, below header/modals */
+    pointer-events: none;
+    /* Let clicks pass through */
+    animation: moveX 13s ease-in-out infinite alternate;
+}
+
+.floating-icon-y {
+    animation: moveY 17s ease-in-out infinite alternate;
+}
+
+.spinning-icon {
+    animation: spin 4s linear infinite;
+    width: 100px;
+    /* Adjust size as needed */
+    opacity: 0.8;
+}
+
+@keyframes moveX {
+    0% {
+        transform: translateX(0vw);
+    }
+
+    100% {
+        transform: translateX(calc(100vw - 100px));
+    }
+
+    /* Subtract width to stay on screen */
+}
+
+@keyframes moveY {
+    0% {
+        transform: translateY(0vh);
+    }
+
+    100% {
+        transform: translateY(calc(100vh - 100px));
+    }
+
+    /* Subtract height to stay on screen */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
