@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt Oss - Esperum Graveservice</title>
+    <meta name="description" content="Kontakt Esperum Graveservice for befaring og tilbud.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="logo.png">
+</head>
+
+<body class="contact-page full-viewport">
+
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Esperum Graveservice Logo">
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="tjenester.html">Tjenester</a></li>
+                    <li><a href="om-oss.html">Om Oss</a></li>
+                    <li><a href="kontakt.html" class="active btn btn-primary">Kontakt Oss</a></li>
+                </ul>
+                <div class="mobile-menu-toggle" aria-label="Meny">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="contact-split-layout">
+            <!-- Left Side: Info -->
+            <div class="contact-left">
+                <div class="contact-text-content">
+                    <h1 class="contact-title">Ta Kontakt</h1>
+                    <p class="contact-desc">Klar for å starte ditt neste prosjekt? Vi er her for å hjelpe deg med
+                        graving, grunnarbeid og mer.</p>
+
+                    <div class="contact-details-list">
+                        <div class="contact-detail-item">
+                            <span class="detail-icon">📞</span>
+                            <div>
+                                <span class="detail-label">Telefon</span>
+                                <a href="tel:+4712345678" class="detail-value">+47 12 34 56 78</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="detail-icon">✉️</span>
+                            <div>
+                                <span class="detail-label">E-post</span>
+                                <a href="mailto:post@esperum.no" class="detail-value">post@esperum.no</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="detail-icon">📍</span>
+                            <div>
+                                <span class="detail-label">Område</span>
+                                <span class="detail-value">Oslo og Viken</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Form -->
+            <div class="contact-right">
+                <div class="form-container-card">
+                    <form class="premium-form" action="#" method="POST"
+                        onsubmit="event.preventDefault(); alert('Takk! Vi kontakter deg snart.');">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Navn</label>
+                                <input type="text" id="name" name="name" placeholder="Ditt navn" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Telefon</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Mobilnummer" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-post</label>
+                            <input type="email" id="email" name="email" placeholder="Din e-postadresse" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Beskjed</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Fortell oss hva du trenger hjelp med..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Send Henvendelse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="copyright-watermark">
+        <p>&copy; 2024 Esperum Graveservice</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
