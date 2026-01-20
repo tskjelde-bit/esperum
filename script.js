@@ -1,51 +1,58 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    // Background Music Logic
+    const bgMusic = document.getElementById('bg-music');
+    const soundToggle = document.getElementById('sound-toggle');
     
-    // Mobile Menu Toggle
+    if (bgMusic && soundToggle) {
+        let isPlaying = false;
+
+        // Try to verify if autoplay worked (it usually doesn't with sound)
+        // We start with the assumption it might be paused.
+        
+        const toggleSound = () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                soundToggle.textContent = '🔇';
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    soundToggle.textContent = '🔊';
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Audio playback failed:", e);
+                });
+            }
+        };
+
+        soundToggle.addEventListener('click', toggleSound);
+
+        // Attempt autoplay on load
+        bgMusic.volume = 0.5; // Start at 50% volume
+        const playPromise = bgMusic.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // Autoplay started!
+                isPlaying = true;
+                soundToggle.textContent = '🔊';
+            }).catch(error => {
+                // Auto-play was prevented
+                // Show UI to let user play manually
+                console.log("Autoplay prevented by browser.");
+                soundToggle.textContent = '🔇';
+                isPlaying = false;
+            });
+        }
+    }
+
+    // Toggle Mobile Menu
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const navList = document.querySelector('.nav-list');
-    const header = document.querySelector('.header');
 
     if (menuToggle) {
         menuToggle.addEventListener('click', () => {
             navList.classList.toggle('active');
-            
-            // Animate hamburger icon
-            const spans = menuToggle.querySelectorAll('span');
-            if (navList.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+            menuToggle.classList.toggle('active');
         });
     }
-
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-list a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navList.classList.contains('active')) {
-                navList.classList.remove('active');
-                
-                // Reset hamburger icon
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    });
-
-    // Header scroll transparency effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(18, 18, 18, 0.98)';
-            header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-        } else {
-            header.style.background = 'rgba(18, 18, 18, 0.95)';
-            header.style.boxShadow = 'none';
-        }
-    });
 });
