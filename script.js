@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Only run on landing page (check for hero section)
         if (!document.querySelector('.hero')) return;
 
-        const count = 15;
+        const count = 30;
         const body = document.body;
 
         const colors = ['#ffffff', '#000000', '#dc2626'];
@@ -88,7 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Randomize Properties
             const color = colors[Math.floor(Math.random() * colors.length)];
-            const size = 30 + Math.random() * 70; // 30px to 100px range
+            // 15% chance for large icon (120-180px), otherwise normal (30-100px)
+            const isLarge = Math.random() < 0.15;
+            const size = isLarge ? 120 + Math.random() * 60 : 30 + Math.random() * 70;
 
             // Inline SVG with dynamic color and size
             const iconHTML = `

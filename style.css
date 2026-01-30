@@ -1148,8 +1148,8 @@ ul {
 .swarm-icon {
     /* Width assigned inline via JS */
     opacity: 0.6;
-    animation: spin 2s linear infinite;
-    /* Fast spin */
+    animation: spin 0.8s linear infinite;
+    /* Very fast spin */
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
 }
 
